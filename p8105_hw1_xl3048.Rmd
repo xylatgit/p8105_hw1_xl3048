@@ -70,8 +70,9 @@ data("penguins", package = "palmerpenguins")
 The mean of flipper length is `r format(round(mean(pull(penguins, flipper_length_mm),na.rm=T),2),nsmall=2)`mm.
 
 ###### ScatterPlot
-```{r scatterplot,warning=FALSE}
+```{r scatterplot,warning=FALSE,message=FALSE}
 ggplot(penguins,aes(x=bill_length_mm,y=flipper_length_mm))+geom_point(aes(color=species))
+ggsave("penguins_plot.jpeg")
 ```                                                                      
                                                                     
 
