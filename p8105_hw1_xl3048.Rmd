@@ -8,20 +8,72 @@ This is my Homework 1 solution.
 
 ```{r,message=FALSE}
 library(tidyverse)
+library(palmerpenguins)
+library(ggplot2)
 ```
 
 # Problem 1
-Create a data frame comprised of specific varible types.
+###### Create a data frame comprised of specific varible types.
 
 ```{r}
-tibble(
+prob1_df=
+  tibble(
   samp=rnorm(10),
   samp_gt_0=samp > 0,
   char_vec=c("a","b","c","d","e","f","g","h","i","j"),
   factor_vec=factor(c("low","low","low","mod","mod","mod","mod","high","high","high"))
 )
 ```
+###### Take the mean of each variable in my data frame.
+
+```{r mean pull var, collapse=TRUE}
+mean(pull(prob1_df,samp))
+mean(pull(prob1_df,samp_gt_0))
+mean(pull(prob1_df,char_vec))
+mean(pull(prob1_df,factor_vec))
+```
+I can take the mean of numbers and logical but not character or factor. 
+
+###### Convert variable types.
+```{r convert to numeric,collapse=TRUE,results='hide'}
+as.numeric(pull(prob1_df,samp_gt_0))
+as.numeric(pull(prob1_df,char_vec))
+as.numeric(pull(prob1_df,factor_vec))
+```
+NAs are introduced when coverting the character vector to numeric
+
+```{r more conversion,collapse=TRUE}
+as.numeric(pull(prob1_df,samp_gt_0))*pull(prob1_df,samp)
+as.factor(pull(prob1_df,samp_gt_0))*pull(prob1_df,samp)
+as.numeric(as.factor(pull(prob1_df,samp_gt_0)))*pull(prob1_df,samp)
+```
 
 
 # Problem 2
+
+```{r,message=FALSE}
+data("penguins", package = "palmerpenguins")
+```
+
+* __Dimension__: The _penguins_ dataset consists of `r nrow(penguins)` rows and `r ncol(penguins)` columns. Variables include _`r names(penguins)`_. 
+* __Variables__:  _species_, _island_ , _sex_, and _year_ are factors. The other variables are numeric.
+ 
+* _species_
+    + {`r unique(pull(penguins, species))`}
+* _island_
+    + {`r unique(pull(penguins, island))`}
+* _sex_
+    + {`r unique(pull(penguins, sex))`}
+* _year_
+    + {`r unique(pull(penguins, year))`}
+
+The mean of flipper length is `r format(round(mean(pull(penguins, flipper_length_mm),na.rm=T),2),nsmall=2)`mm.
+
+###### ScatterPlot
+```{r scatterplot,warning=FALSE}
+ggplot(penguins,aes(x=bill_length_mm,y=flipper_length_mm))+geom_point(aes(color=species))
+```                                                                      
+                                                                    
+
+
 
