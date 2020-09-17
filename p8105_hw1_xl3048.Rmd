@@ -66,6 +66,33 @@ data("penguins", package = "palmerpenguins")
     + {`r unique(pull(penguins, sex))`}
 * _year_
     + {`r unique(pull(penguins, year))`}
+    
+* _bill_length_mm_
+    + Range: `r min(pull(penguins, bill_length_mm),na.rm=T)`~`r max(pull(penguins, bill_length_mm),na.rm=T)`
+    + Mean: `r format(round(mean(pull(penguins, bill_length_mm),na.rm=T),2),nsmall=T)`
+    + Median: `r median(pull(penguins, bill_length_mm),na.rm=T)`
+    + Number of NAs: `r sum(is.na(pull(penguins, bill_length_mm)))`
+
+* _bill_depth_mm_
+    + Range: `r min(pull(penguins, bill_depth_mm),na.rm=T)`~`r max(pull(penguins, bill_depth_mm),na.rm=T)`
+    + Mean: `r format(round(mean(pull(penguins, bill_depth_mm),na.rm=T),2),nsmall=T)`
+    + Median: `r median(pull(penguins, bill_depth_mm),na.rm=T)`
+    + Number of NAs: `r sum(is.na(pull(penguins, bill_depth_mm)))`
+
+* _flipper_length_mm_
+    + Range: `r min(pull(penguins, flipper_length_mm),na.rm=T)`~`r max(pull(penguins, flipper_length_mm),na.rm=T)`
+    + Mean: `r format(round(mean(pull(penguins, flipper_length_mm),na.rm=T),2),nsmall=T)`
+    + Median: `r median(pull(penguins, flipper_length_mm),na.rm=T)`
+    + Number of NAs: `r sum(is.na(pull(penguins, flipper_length_mm)))`
+
+* _body_mass_g_
+    + Range: `r min(pull(penguins, body_mass_g),na.rm=T)`~`r max(pull(penguins, body_mass_g),na.rm=T)`
+    + Mean: `r format(round(mean(pull(penguins, body_mass_g),na.rm=T),2),nsmall=T)`
+    + Median: `r median(pull(penguins, body_mass_g),na.rm=T)`
+    + Number of NAs: `r sum(is.na(pull(penguins, body_mass_g)))`
+
+
+
 
 The mean of flipper length is `r format(round(mean(pull(penguins, flipper_length_mm),na.rm=T),2),nsmall=2)`mm.
 
